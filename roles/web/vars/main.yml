@@ -1,0 +1,11 @@
+packages:
+  - {package_name: "nginx", package_state: 'latest'}
+file_names:
+  - css
+  - images
+  - js
+  - about.html
+  - coffees.html
+  - contact.html
+coffee_title: Coffee
+template_name: index.html

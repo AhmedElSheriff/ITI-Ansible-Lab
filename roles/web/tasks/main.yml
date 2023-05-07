@@ -1,0 +1,17 @@
+- name: Uninstall Packages
+  apt:
+    name: "{{ item.package_name }}"
+    state: absent
+  loop: "{{ packages }}"
+
+- name: Update Packages
+  apt:
+    update_cache: yes
+
+- name: Install Packages
+  apt:
+    name: "{{ item.package_name }}"
+    state: "{{ item.package_state }}"
+  loop: "{{ packages }}"
+  notify:
+    - copy_files

@@ -1,0 +1,20 @@
+- name: copy_files
+  copy:
+    src: "{{ item }}"
+    dest: /var/www/html/
+  loop: "{{ file_names }}"
+  notify: 
+    - copy_index
+
+- name: copy_index
+  template:
+    src: "{{ template_name }}.j2"
+    dest: "/var/www/html/{{ template_name }}"
+  notify: 
+    - start_nginx
+
+- name: start_nginx
+  ansible.builtin.sysvinit:
+    name: nginx
+    state: restarted
+    enabled: yes
